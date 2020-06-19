@@ -1,0 +1,9 @@
+files:
+- veloren: https://veloren.sfo2.cdn.digitaloceanspaces.com/releases/0.6.0-linux.tar.gz
+game:
+  exe: veloren-voxygen
+installer:
+- extract:
+    file: veloren
+    dst: $GAMEDIR
+- chmodx: $GAMEDIR/veloren-voxygen

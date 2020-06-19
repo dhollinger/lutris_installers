@@ -1,0 +1,53 @@
+Name: Freelancer
+gameslug: freelancer
+version: DiscoverMod
+slug: freelancer-discovery
+runner: wine
+
+script:
+  files:
+  - discovery: https://discoverygc.com/files/discovery_4.91.0.1.exe
+  - wmfdist: https://r.je/freelancer/WMFDIST.EXE
+  game:
+    arch: win32
+    exe: $GAMEDIR/drive_c/users/dhollinger/Local Settings/Application Data/Discovery Freelancer 4.91.0/DSLauncher.exe
+    prefix: $GAMEDIR
+  installer:
+  - task:
+      arch: win32
+      description: Creating Wine prefix
+      name: create_prefix
+      prefix: $GAMEDIR
+  - task:
+      name: winetricks
+      description: Installing DirectPlay
+      prefix: $GAMEDIR
+      app: directplay
+  - task:
+      name: winetricks
+      description: Installing Microsoft Foundation Classes
+      prefix: $GAMEDIR
+      app: mfc42
+  - task:
+      name: winetricks
+      description: Installing Microsoft Audio Compression Manager
+      prefix: $GAMEDIR
+      app: msacm32
+  - task:
+      name: winetricks
+      description: Installing .NET 4.0
+      prefix: $GAMEDIR
+      app: dotnet40
+  - insert-disc:
+      requires: setup.exe
+  - task:
+      description: Installing Freelancer. Please choose "Express install".
+      executable: $DISC/setup.exe
+      name: wineexec
+      prefix: $GAMEDIR
+  - task:
+      description: Installing Discovery Mod
+      executable: discovery
+      name: wineexec
+      prefix: $GAMEDIR
+  

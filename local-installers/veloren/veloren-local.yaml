@@ -1,0 +1,16 @@
+name: Veloran
+game_slug: veloran
+version: 0.6.0
+slug: veloren-060
+runner: linux
+
+script:
+  files:
+  - veloren: https://veloren.sfo2.cdn.digitaloceanspaces.com/releases/0.6.0-linux.tar.gz
+  game:
+    exe: veloren-voxygen
+  installer:
+  - extract:
+      file: veloren
+      dst: $GAMEDIR
+  - chmodx: $GAMEDIR/veloren-voxygen
