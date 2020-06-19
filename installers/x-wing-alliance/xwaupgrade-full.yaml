@@ -1,23 +1,37 @@
 files:
-- install: N/A:Select the installer provided by GOG.
+- install: "N/A:Select the installer provided by GOG."
 - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
 - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAUCP_v1.6.exe
 - xwa60fps: https://github.com/dhollinger/xwalutrisfiles/releases/download/v1.0.0/xw_series_60FPS.zip
-- effects: https://www.xwaupgrade.com/download/installers/EffectsByBlueMax_v1.1.2.exe
-- rebelcockpits: https://www.xwaupgrade.com/download/installers/RebelDynamicCockpits_v2.0.exe
-- tiecockpits: https://www.xwaupgrade.com/download/installers/TieDynamicCockpits_v1.0.exe
-- superbackdrops: https://www.xwaupgrade.com/download/installers/SuperBackdropsPatch_v2.1.exe
+- effects: https://www.xwaupgrade.com/download/installers/EffectsByBlueMax_v1.1.3.2.exe
+- rebelcockpits: https://www.xwaupgrade.com/download/installers/RebelDynamicCockpits_v2.1.exe
+- tiecockpits: https://www.xwaupgrade.com/download/installers/TieDynamicCockpits_v2.0.exe
+- superbackdrops: https://www.xwaupgrade.com/download/installers/SuperBackdropsPatch_v3.0.exe
+- t65: https://www.xwaupgrade.com/download/models/Xwing_v6.0.exe
+- tw: https://www.xwaupgrade.com/download/models/Twing_v4.1.exe
 - z95: https://www.xwaupgrade.com/download/models/Z-95Headhunter_v5.0.exe
 - IRS: https://www.xwaupgrade.com/download/models/ImperialResearchShip_v1.1.exe
 - vsd: https://www.xwaupgrade.com/download/models/VictoryStarDestroyer_v2.0.exe
+- ssd: https://www.xwaupgrade.com/download/models/SuperStarDestroyer_v2.0.exe
 - BC: https://www.xwaupgrade.com/download/models/BulkCruiser_v1.1.exe
+- dread: https://www.xwaupgrade.com/download/models/Dreadnaught_v2.2.exe
 - NB2: https://www.xwaupgrade.com/download/models/ModFrigate_v2.1.exe
 - DR: https://www.xwaupgrade.com/download/models/Casino_v2.0.exe
 - repair: https://www.xwaupgrade.com/download/models/RepairYard_v1.1.exe
+- array: https://www.xwaupgrade.com/download/models/SensorArray_v1.1.exe
+- ashuttle: https://www.xwaupgrade.com/download/models/AssaultShuttle_v2.0.exe
+- atrans: https://www.xwaupgrade.com/download/models/AssaultTransport_v2.1.exe
+- cuv: https://www.xwaupgrade.com/download/models/CombatUtilityVehicle_v1.0.exe
+- yt1300: https://www.xwaupgrade.com/download/models/YT-1300_v2.0.exe
+- mf: https://www.xwaupgrade.com/download/models/MillenniumFalcon_v3.0.exe
+- shuttle: https://www.xwaupgrade.com/download/models/Shuttle_v5.1.exe
 - trans: https://www.xwaupgrade.com/download/models/StormTransport_v2.1.exe
+- conttrans: https://www.xwaupgrade.com/download/models/ContainerTransport_v2.2.exe
 - containers: https://www.xwaupgrade.com/download/models/ContainerPack_v4.1.exe
+- imppilot: https://www.xwaupgrade.com/download/models/ImperialPilot_v1.1.exe
 - accel: https://www.xwaupgrade.com/download/models/AccelRing_v1.1.exe
 - guns: https://www.xwaupgrade.com/download/models/GunPads_v1.1.exe
+- lguns: https://www.xwaupgrade.com/download/models/GunPads_v1.1.exe
 game:
   arch: win64
   exe: drive_c/GOG Games/Star Wars - X-Wing Alliance/XWINGALLIANCE.EXE
@@ -52,12 +66,12 @@ installer:
     file: xwa60fps
     format: zip
 - merge:
-    description: Moving custom files into XWA directory
-    dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/
-    src: $CACHE/Star Wars - X-Wing Alliance/
+   description: Moving custom files into XWA directory
+   dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/
+   src: $CACHE/Star Wars - X-Wing Alliance/
 - task:
     arch: win64
-    description: Install SuperBackdropsPatch_v2
+    description: Install SuperBackdropsPatch_v3
     executable: superbackdrops
     name: wineexec
     prefix: $GAMEDIR
@@ -71,24 +85,6 @@ installer:
     arch: win64
     description: Install New Nebulon-B2 Frigate Model
     executable: NB2
-    name: wineexec
-    prefix: $GAMEDIR
-- task:
-    arch: win64
-    description: Install Rebel Dynamic Cockpits
-    executable: rebelcockpits
-    name: wineexec
-    prefix: $GAMEDIR
-- task:
-    arch: win64
-    description: Install TIE Dynamic Cockpits
-    executable: tiecockpits
-    name: wineexec
-    prefix: $GAMEDIR
-- task:
-    arch: win64
-    description: Install Z-95 model with Dynamic Cockpit
-    executable: z95
     name: wineexec
     prefix: $GAMEDIR
 - task:
@@ -139,14 +135,105 @@ installer:
     executable: guns
     name: wineexec
     prefix: $GAMEDIR
-- execute:
-    command: 'rm $GAMEDIR/drive_c/GOG\ Games/Star\ Wars\ -\ X-Wing\ Alliance/Hook_Time.dll'
 - task:
     arch: win64
     description: Install Blue Max's Effects
     executable: effects
     name: wineexec
     prefix: $GAMEDIR
+- task:
+    arch: win64
+    description: Install X-Wing v6
+    executable: t65
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    executable: tw
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    executable: ssd
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    executable: dread
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    executable: array
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    executable: ashuttle
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    executable: atrans
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    executable: cuv
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    executable: yt1300
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    executable: mf
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    executable: shuttle
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    executable: conttrans
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    executable: imppilot
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    executable: lguns
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    description: Install Rebel Dynamic Cockpits
+    executable: rebelcockpits
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    description: Install TIE Dynamic Cockpits
+    executable: tiecockpits
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    description: Install Z-95 model with Dynamic Cockpit
+    executable: z95
+    name: wineexec
+    prefix: $GAMEDIR
+- execute:
+    command: 'sed -i s/Text2DRendererEnabled\ =\ 1/Text2DRendererEnabled\ =\ 0/g $GAMEDIR/drive_c/GOG\ Games/Star\ Wars\ -\ X-Wing\ Alliance/ddraw.cfg'
+- execute:
+    command: 'sed -i s/Radar2DRendererEnabled\ =\ 1/Radar2DRendererEnabled\ =\ 0/g $GAMEDIR/drive_c/GOG\ Games/Star\ Wars\ -\ X-Wing\ Alliance/ddraw.cfg'
 - extract:
     description: Prepare XWAHacker
     dst: $CACHE/xwahacker
@@ -182,4 +269,6 @@ wine:
     ddraw.dll: n, b
     dinput.dll: n, b
 system:
+  env:
+    DXVK_STATE_CACHE: '0'
   reset_desktop: true
