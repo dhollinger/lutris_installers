@@ -278,4 +278,6 @@ script:
       ddraw.dll: n, b
       dinput.dll: n, b
   system:
+    env:
+      DXVK_STATE_CACHE: '0'
     reset_desktop: true
