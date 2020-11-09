@@ -6,11 +6,11 @@ runner: linux
 
 script:
   files:
-  - veloren: https://veloren.sfo2.cdn.digitaloceanspaces.com/releases/0.6.0-linux.tar.gz
+  - veloren: https://github.com/Songtronix/Airshipper/releases/download/v0.4.0/airshipper-linux.zip
   game:
-    exe: veloren-voxygen
+    exe: airshipper
   installer:
   - extract:
       file: veloren
       dst: $GAMEDIR
-  - chmodx: $GAMEDIR/veloren-voxygen
+  - chmodx: $GAMEDIR/airshipper
