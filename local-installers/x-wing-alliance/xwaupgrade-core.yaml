@@ -9,6 +9,7 @@ files:
 - install: N/A:Select the installer provided by GOG.
 - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
 - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAUCP_v1.6.exe
+- xwaupatch: https://xwaupgrade.com/download/installers/XWAUCP_Patch_v1.0.exe
 - xwa60fps: https://github.com/dhollinger/xwalutrisfiles/releases/download/v1.0.0/xw_series_60FPS.zip
 game:
   arch: win64
@@ -36,6 +37,12 @@ installer:
     arch: win64
     description: Installing XWA Upgrade
     executable: xwaupgrade
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    description: Installing XWA Upgrade Patch 1.0
+    executable: xwaupatch
     name: wineexec
     prefix: $GAMEDIR
 - extract:
