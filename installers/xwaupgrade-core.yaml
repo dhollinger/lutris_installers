@@ -1,0 +1,92 @@
+results:
+  - name: "STAR WARS: X-Wing Alliance"
+    game_slug: star-wars-x-wing-alliance
+    version: "XWAUpgrade - Core"
+    slug: star-wars-x-wing-alliance-xwaupgrade-core
+    runner: wine
+    script:
+      files:
+      - install: N/A:Select the installer provided by GOG.
+      - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
+      - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAUCP_v1.6.exe
+      - xwaupatch: https://xwaupgrade.com/download/installers/XWAUCP_Patch_v1.0.exe
+      - xwa60fps: https://github.com/dhollinger/xwalutrisfiles/releases/download/v1.0.0/xw_series_60FPS.zip
+      game:
+        arch: win64
+        exe: drive_c/GOG Games/Star Wars - X-Wing Alliance/XWINGALLIANCE.EXE
+        prefix: $GAMEDIR
+      installer:
+      - task:
+          arch: win64
+          name: create_prefix
+          prefix: $GAMEDIR
+      - task:
+          arch: win64
+          description: Installing .NET 4.6.1
+          name: winetricks
+          prefix: $GAMEDIR
+          app: dotnet461
+      - task:
+          arch: win64
+          description: Running installer. Please quit the installer at the end, do not run
+            the game until this script finishes installing.
+          executable: install
+          name: wineexec
+          prefix: $GAMEDIR
+      - task:
+          arch: win64
+          description: Installing XWA Upgrade
+          executable: xwaupgrade
+          name: wineexec
+          prefix: $GAMEDIR
+      - task:
+          arch: win64
+          description: Installing XWA Upgrade Patch 1.0
+          executable: xwaupatch
+          name: wineexec
+          prefix: $GAMEDIR
+      - extract:
+          description: Extracting custom 60 FPS DLLs
+          dst: $CACHE/Star Wars - X-Wing Alliance
+          file: xwa60fps
+          format: zip
+      - merge:
+          description: Moving custom files into XWA directory
+          dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/
+          src: $CACHE/Star Wars - X-Wing Alliance/
+      - extract:
+          description: Prepare XWAHacker
+          dst: $CACHE/xwahacker
+          file: xwahacker
+          format: zip
+      - task:
+          args: XWINGALLIANCE.EXE -c 0
+          executable: $CACHE/xwahacker/xwahacker.exe
+          name: wineexec
+          prefix: $GAMEDIR
+          working_dir: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/
+      - task:
+          args: XWINGALLIANCE.EXE -c 7
+          executable: $CACHE/xwahacker/xwahacker.exe
+          name: wineexec
+          prefix: $GAMEDIR
+          working_dir: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/
+      - task:
+          description: Set resolution, FoV, and HUD scaling
+          args: XWINGALLIANCE.EXE -r 3 1920 1080
+          executable: $CACHE/xwahacker/xwahacker.exe
+          name: wineexec
+          prefix: $GAMEDIR
+          working_dir: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/
+      - task:
+          arch: win64
+          description: Setting Windows 10 mode
+          name: winetricks
+          prefix: $GAMEDIR
+          app: win10
+      wine:
+        overrides:
+          ddraw.dll: n, b
+          dinput.dll: n, b
+      system:
+        reset_desktop: true

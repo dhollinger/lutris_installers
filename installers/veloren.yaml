@@ -1,0 +1,16 @@
+results:
+  - name: Veloren
+    game_slug: veloren
+    version: launcher
+    slug: veloren-launcher
+    runner: linux
+    script:
+      files:
+      - veloren: https://github.com/Songtronix/Airshipper/releases/download/v0.4.0/airshipper-linux.zip
+      game:
+        exe: airshipper
+      installer:
+      - extract:
+          file: veloren
+          dst: $GAMEDIR
+      - chmodx: $GAMEDIR/airshipper

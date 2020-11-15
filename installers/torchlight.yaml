@@ -1,0 +1,22 @@
+results:
+  - game_slug: torchlight
+    name: Torchlight
+    runner: linux
+    slug: torchlight-humble
+    version: Humble
+    humbleid: torchlight
+    humblestoreid: torchlight
+    humblestoreid_real: torchlight
+    script:
+      files:
+      - game: 'N/A: Please select the .sh install file downloaded from humblebundle.com'
+      - sdl: 'https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/libSDL2-2.0.so.0.tar.gz'
+      game:
+        exe: $GAMEDIR/Torchlight/Torchlight.bin.x86_64
+      installer:
+      - execute:
+          args: -u -r -l -d $GAMEDIR -b $GAMEDIR --nox11 --packager dpkg --ignore-failed-deps
+          file: game
+      - extract:
+          file: sdl
+          dst: $GAMEDIR/Torchlight/lib64
