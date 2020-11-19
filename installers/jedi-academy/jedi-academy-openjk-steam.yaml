@@ -1,19 +1,20 @@
-name: "Star Wars Jedi Knight: Jedi Academy"
-game_slug: star-wars-jedi-knight-jedi-academy
-version: native+steam_data
-slug: star-wars-jedi-knight-jedi-academy
-runner: linux
-
-exe: GameData/openjk.x86_64
-files:
-  - openjk: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/openjk_ja_linux.tar.gz
-  - exec: 
-  - jediacademy-data: $STEAM:6020:GameData
-installer:
-  - extract:
-      file: openjk
-      dst: $GAMEDIR/GameData
-  - merge:
-      dst: $GAMEDIR/GameData
-      src: jediacademy-data
-
+results:
+  - name: "Star Wars Jedi Knight: Jedi Academy"
+    game_slug: star-wars-jedi-knight-jedi-academy
+    version: native+steam_data
+    slug: star-wars-jedi-knight-jedi-academy
+    runner: linux
+    
+    files:
+      - openjk: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/openjk_ja_linux.tar.gz
+      - exec: https://raw.githubusercontent.com/dhollinger/lutris_installers/master/installers/jedi-academy/start.sh
+      - jediacademy-data: $STEAM:6020:GameData
+    exe: $GAMEDIR/start.sh
+    installer:
+      - chmodx: $GAMEDIR/start.sh
+      - extract:
+          file: openjk
+          dst: $GAMEDIR/GameData
+      - merge:
+          dst: $GAMEDIR/GameData
+          src: jediacademy-data
