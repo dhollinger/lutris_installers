@@ -1,16 +1,16 @@
 results:
   - name: "STAR WARS: X-Wing Alliance"
     game_slug: star-wars-x-wing-alliance
-    version: "XWAUpgrade - Core"
+    version: "XWAUpgrade - GOG"
     slug: star-wars-x-wing-alliance-xwaupgrade-core
     runner: wine
+    gogid: 1421404763
+    gogslug: star_wars_xwing_alliance
     script:
       files:
       - install: N/A:Select the installer provided by GOG.
       - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
-      - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAUCP_v1.6.exe
-      - xwaupatch: https://xwaupgrade.com/download/installers/XWAUCP_Patch_v1.0.exe
-      - xwa60fps: https://github.com/dhollinger/xwalutrisfiles/releases/download/v1.0.0/xw_series_60FPS.zip
+      - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
       game:
         arch: win64
         exe: drive_c/GOG Games/Star Wars - X-Wing Alliance/XWINGALLIANCE.EXE
@@ -39,21 +39,6 @@ results:
           executable: xwaupgrade
           name: wineexec
           prefix: $GAMEDIR
-      - task:
-          arch: win64
-          description: Installing XWA Upgrade Patch 1.0
-          executable: xwaupatch
-          name: wineexec
-          prefix: $GAMEDIR
-      - extract:
-          description: Extracting custom 60 FPS DLLs
-          dst: $CACHE/Star Wars - X-Wing Alliance
-          file: xwa60fps
-          format: zip
-      - merge:
-          description: Moving custom files into XWA directory
-          dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/
-          src: $CACHE/Star Wars - X-Wing Alliance/
       - extract:
           description: Prepare XWAHacker
           dst: $CACHE/xwahacker
@@ -80,6 +65,18 @@ results:
           working_dir: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/
       - task:
           arch: win64
+          description: setup DXVK manually
+          name: winetricks
+          prefix: $GAMEDIR
+          app: dxvk
+      - task:
+          key: d3d9
+          name: set_regedit
+          path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\BabuFriksConfigurator.exe\DllOverrides
+          type: REG_SZ
+          value: builtin
+      - task:
+          arch: win64
           description: Setting Windows 10 mode
           name: winetricks
           prefix: $GAMEDIR
@@ -88,5 +85,8 @@ results:
         overrides:
           ddraw.dll: n, b
           dinput.dll: n, b
+        dxvk: false
       system:
+        env:
+          DXVK_STATE_CACHE: '0'
         reset_desktop: true
