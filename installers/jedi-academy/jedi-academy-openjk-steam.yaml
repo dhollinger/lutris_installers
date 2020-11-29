@@ -4,17 +4,20 @@ results:
     version: native+steam_data
     slug: star-wars-jedi-knight-jedi-academy
     runner: linux
-    
-    files:
+    script:
+      exe: start.sh
+      files:
       - openjk: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/openjk_ja_linux.tar.gz
       - exec: https://raw.githubusercontent.com/dhollinger/lutris_installers/master/installers/jedi-academy/start.sh
       - jediacademy-data: $STEAM:6020:GameData
-    exe: $GAMEDIR/start.sh
-    installer:
+      installer:
+      - move:
+          dst: $GAMEDIR/start.sh
+          src: exec
       - chmodx: $GAMEDIR/start.sh
       - extract:
-          file: openjk
           dst: $GAMEDIR/GameData
+          file: openjk
       - merge:
           dst: $GAMEDIR/GameData
           src: jediacademy-data
