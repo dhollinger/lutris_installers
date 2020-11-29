@@ -28,8 +28,7 @@ results:
           app: dotnet461
       - task:
           arch: win64
-          description: Running installer. Please quit the installer at the end, do not run
-            the game until this script finishes installing.
+          description: Running installer. Please quit the installer at the end, do not run the game until this script finishes installing.
           executable: install
           name: wineexec
           prefix: $GAMEDIR
