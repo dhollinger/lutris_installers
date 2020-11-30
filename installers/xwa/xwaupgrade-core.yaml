@@ -41,7 +41,7 @@ results:
           dst: $CACHE/cmdow
       - move:
           dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/cmdow.exe
-          src: $CACHE/cmdow/cmdow-1.4.8/bin/Release/cmdow.exe
+          src: $CACHE/cmdow/bin/Release/cmdow.exe
       - move:
           dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/xwa.bat
           src: launcher
