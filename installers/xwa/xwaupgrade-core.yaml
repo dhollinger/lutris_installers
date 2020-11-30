@@ -11,9 +11,11 @@ results:
       - install: N/A:Select the installer provided by GOG.
       - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
       - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
+      - radiobutton: https://github.com/dhollinger/lutris_installers/raw/master/installers/xwa/RadioButtonBox.exe
+      - launcher: https://raw.githubusercontent.com/dhollinger/lutris_installers/master/installers/xwa/xwa.bat
       game:
         arch: win64
-        exe: drive_c/GOG Games/Star Wars - X-Wing Alliance/XWINGALLIANCE.EXE
+        exe: drive_c/GOG Games/Star Wars - X-Wing Alliance/xwa.bat
         prefix: $GAMEDIR
       installer:
       - task:
@@ -32,6 +34,14 @@ results:
           executable: install
           name: wineexec
           prefix: $GAMEDIR
+      - move:
+          dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/xwa.bat
+          src: launcher
+      - move:
+          dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/RadioButtonBox.exe
+          src: radiobutton
+      - chmodx: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/xwa.bat
+      - chmodx: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/RadioButtonBox.exe
       - task:
           arch: win64
           description: Installing XWA Upgrade
