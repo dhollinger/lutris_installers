@@ -13,9 +13,11 @@ results:
       - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
       - radiobutton: https://github.com/dhollinger/lutris_installers/raw/master/installers/xwa/RadioButtonBox.exe
       - launcher: https://raw.githubusercontent.com/dhollinger/lutris_installers/master/installers/xwa/xwa.bat
+      - cmdow: https://github.com/ritchielawrence/cmdow/archive/v1.4.8.zip
       game:
         arch: win64
-        exe: drive_c/GOG Games/Star Wars - X-Wing Alliance/xwa.bat
+        exe: drive_c/GOG Games/Star Wars - X-Wing Alliance/cmdow.exe
+        args: /run /hid xwa.bat
         prefix: $GAMEDIR
       installer:
       - task:
@@ -34,6 +36,12 @@ results:
           executable: install
           name: wineexec
           prefix: $GAMEDIR
+      - extract:
+          file: cmdow
+          dst: $CACHE/cmdow
+      - move:
+          dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/cmdow.exe
+          src: $CACHE/cmdow/cmdow-1.4.8/bin/Release/cmdow.exe
       - move:
           dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/xwa.bat
           src: launcher
