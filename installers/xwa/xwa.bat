@@ -1,9 +1,9 @@
 @echo off
 
-FOR /F "tokens=*" %%g IN ('START /B RadioButtonBox.exe "Launch;Configure" "Select to Launch" "X-Wing Alliance Launcher"') DO SET launch=%%g
+for /f %%g IN ('RadioButtonBox.exe "Launch;Configure" "Select to Launch" "X-Wing Alliance Launcher"') do set launch=%%g
 
-IF /i "%launch%"=="Configure" goto :StartConfig
-IF /i "%launch%"=="Launch" goto :LaunchGame
+if /i "%launch%"=="Configure" goto :StartConfig
+if /i "%launch%"=="Launch" goto :LaunchGame
 
 goto commonexit
 
@@ -16,4 +16,4 @@ XWINGALLIANCE.EXE
 goto commonexit
 
 :commonexit
-EXIT /B 0
+exit /B 0
