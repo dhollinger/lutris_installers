@@ -11,6 +11,7 @@ results:
       - install: N/A:Select the installer provided by GOG.
       - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
       - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
+      - xwaupatch1: https://www.xwaupgrade.com/download/installers/XWAU2020update_v1.0.exe
       - radiobutton: https://github.com/dhollinger/lutris_installers/raw/master/installers/xwa/RadioButtonBox.exe
       - launcher: https://raw.githubusercontent.com/dhollinger/lutris_installers/master/installers/xwa/xwa.bat
       - cmdow: https://github.com/ritchielawrence/cmdow/archive/v1.4.8.zip
@@ -58,8 +59,14 @@ results:
       - chmodx: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/RadioButtonBox.exe
       - task:
           arch: win64
-          description: Installing XWA Upgrade
+          description: Installing XWA Upgrade 2020
           executable: xwaupgrade
+          name: wineexec
+          prefix: $GAMEDIR
+      - task:
+          arch: win64
+          description: Installing XWA Upgrade 2020 Patch 1
+          executable: xwaupatch1
           name: wineexec
           prefix: $GAMEDIR
       - extract:
@@ -96,6 +103,18 @@ results:
           key: d3d9
           name: set_regedit
           path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\BabuFriksConfigurator.exe\DllOverrides
+          type: REG_SZ
+          value: builtin
+      - task:
+          key: d3d9
+          name: set_regedit
+          path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\PalpatineTotalConverter.exe\DllOverrides
+          type: REG_SZ
+          value: builtin
+      - task:
+          key: d3d9
+          name: set_regedit
+          path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\XWAU2020update_v1.0.exe\DllOverrides
           type: REG_SZ
           value: builtin
       - task:
