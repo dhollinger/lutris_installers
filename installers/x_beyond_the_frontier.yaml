@@ -1,0 +1,32 @@
+results:
+- id: 26984
+  game_id: 353
+  game_slug: x-beyond-the-frontier
+  name: 'X: Beyond the Frontier'
+  user: eagledelta1
+  runner: wine
+  slug: x-beyond-the-frontier-gog
+  version: GOG
+  description:
+  steamid: 2840
+  gogid: 1441039631
+  gogslug: x_beyond_the_frontier
+  script:
+    files:
+    - install: N/A:Select the installer provided by GOG.
+    game:
+      arch: win64
+      exe: drive_c/GOG Games/X - Beyond the Frontier/X.exe
+      prefix: "$GAMEDIR"
+    installer:
+    - task:
+        arch: win64
+        description: Setting up WINE Prefix
+        name: create_prefix
+        prefix: "$GAMEDIR"
+    - task:
+        arch: win64
+        description: 'Installing X: Beyond the Frontier'
+        executable: install
+        name: wineexec
+        prefix: "$GAMEDIR"

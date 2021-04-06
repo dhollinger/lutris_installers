@@ -1,0 +1,60 @@
+results:
+  - name: Lord of the Rings - Battle for Middle-Earth II
+    game_slug: lord-of-the-rings-battle-for-middle-earth-ii
+    version: Core
+    slug: lord-of-the-rings-battle-for-middle-earth-ii-core
+    runner: wine
+    script:
+      files:
+        - patch109:
+            filename: BFME2 PatchSwitcher Setup.exe
+            referer: https://duckduckgo.com
+            url: http://www.shatabrick.org/downloads/BFME2%20PatchSwitcher%20Setup.exe
+        - nocd: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/game.zip
+      game:
+        arch: win64
+        exe: $GAMEDIR/drive_c/Program Files (x86)/Electronic Arts/The Battle for Middle-earth (tm) II/lotrbfme2.exe
+        prefix: $GAMEDIR
+      installer:
+        - task:
+            arch: win64
+            name: create_prefix
+            prefix: $GAMEDIR
+        - insert-disc:
+            requires: AutoRun.exe
+        - task:
+            arch: win64
+            description: Run Installer
+            executable: $DISC/AutoRun.exe
+            name: wineexec
+            prefix: $GAMEDIR
+            working_dir: $DISC
+        - task:
+            arch: win64
+            description: Install PatchSwitcher
+            executable: patch109
+            name: wineexec
+            prefix: $GAMEDIR
+        - extract:
+            file: nocd
+            dst: $GAMEDIR/drive_c/Program Files (x86)/Electronic Arts/The Battle for Middle-earth (tm) II/
+        - write_file:
+            content: >-
+              AllHealthBars = yes
+              MusicVolume = 60.000000
+              AmbientVolume = 70.000000
+              SFXVolume = 100.000000
+              VoiceVolume = 80.000000
+              MovieVolume = 80.000000
+              AudioLOD = High
+              UseEAX3 = no
+              Brightness = 50
+              HasGotOnline = yes
+              IdealStaticGameLOD = UltraHigh
+              StaticGameLOD = UltraHigh
+              Resolution = 1920 1080
+              ScrollFactor = 50
+              FlashTutorial = 0
+              HasSeenLogoMovies = yes
+              TimesInGame = 1
+          file: $GAMEDIR/drive_c/users/$USER/Application Data/My Battle for Middle-earth(tm) II Files/Options.ini

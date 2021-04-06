@@ -1,0 +1,50 @@
+results:
+  - name: Lord of the Rings - Battle for Middle-Earth II - Rise of the Witch King
+    game_slug: lord-of-the-rings-battle-for-middle-earth-ii-rise-
+    slug: lord-of-the-rings-battle-for-middle-earth-ii-rise-core
+    version: Core
+    runner: wine
+    script:
+      files:
+        - patch2.01: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/LotrBfMe2EP1-131073-english.exe
+        - patch2.02v800: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/202_v8_mini_ws.exe
+        - patch2.02v840: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/202_v840_updater.exe
+      game:
+        arch: win64
+        exe: $GAMEDIR/drive_c/Program Files (x86)/Electronic Arts/The Lord of the Rings, The Rise of the Witch-king/lotrbfme2ep1.exe
+        prefix: $GAMEDIR
+      installer:
+        - task:
+            arch: win64
+            description: Set patch version to 1.06
+            executable: $GAMEDIR/drive_c/Program Files (x86)/BFME2 PatchSwitcher/BFME2 PatchSwitcher.exe
+            name: wineexec
+            prefix: $GAMEDIR
+        - insert-disc:
+            requires: AutoRun.exe
+        - task:
+            arch: win64
+            description: Run Installer
+            executable: $DISC/AutoRun.exe
+            name: wineexec
+            prefix: $GAMEDIR
+            working_dir: $DISC
+        - task:
+            arch: win64
+            description: Install Official 2.01 patch
+            executable: patch2.01
+            name: wineexec
+            prefix: $GAMEDIR
+        - task:
+            arch: win64
+            description: Install Fan Patch 2.02
+            executable: patch2.02v800
+            name: wineexec
+            prefix: $GAMEDIR
+        - task:
+            arch: win64
+            description: Install Fan Patch 2.02 v8.40 updater
+            executable: patch2.02v840
+            name: wineexec
+            prefix: $GAMEDIR
+      requires: lord-of-the-rings-battle-for-middle-earth-ii

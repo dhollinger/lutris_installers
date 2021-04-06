@@ -1,0 +1,54 @@
+name: The Lord of the Rings - Battle for Middle-Earth II
+game_slug: lord-of-the-rings-battle-for-middle-earth-ii
+version: HD
+slug: lord-of-the-rings-battle-for-middle-earth-ii-hd
+runner: wine
+script:
+  files:
+    - hdmod: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/BFME2HDEdition_setup.1.exe
+  game:
+    arch: win64
+    args: -mod "$GAMEDIR/drive_c/users/$USER/Application Data/My Battle for Middle-earth(tm) II Files/HDEdition.big"
+    exe: $GAMEDIR/drive_c/Program Files (x86)/Electronic Arts/The Battle for Middle-earth(tm) II/lotrbfme2.exe
+    prefix: $GAMEDIR
+  installer:
+    - task:
+        arch: win64
+        description: Set patch version to 1.09
+        executable: $GAMEDIR/drive_c/Program Files (x86)/BFME2 PatchSwitcher/BFME2 PatchSwitcher.exe
+        name: wineexec
+        prefix: $GAMEDIR
+    - task:
+        arch: win64
+        description: Installing hd mod
+        executable: hdmod
+        name: wineexec
+        prefix: $GAMEDIR
+    - write_file:
+        content: >-
+         'AllHealthBars = yes\n
+          MusicVolume = 60.000000\n
+          AmbientVolume = 70.000000\n
+          SFXVolume = 100.000000\n
+          VoiceVolume = 80.000000\n
+          MovieVolume = 80.000000\n
+          AudioLOD = High\n
+          UseEAX3 = no\n
+          Brightness = 50\n
+          HasGotOnline = yes\n
+          IdealStaticGameLOD = UltraHigh\n
+          StaticGameLOD = UltraHigh\n
+          Resolution = 1920 1080\n
+          ScrollFactor = 50\n
+          FlashTutorial = 0\n
+          HasSeenLogoMovies = yes\n
+          TimesInGame = 1'
+        file: $GAMEDIR/drive_c/users/$USER/Application Data/My Battle for Middle-earth(tm) II Files/Options.ini
+        #    - task:
+          #arch: win64
+          #description: first launch
+          #executable: $GAMEDIR/drive_c/Program Files (x86)/Electronic Arts/The Battle for Middle-earth (tm) II/lotrbfme2.exe
+          # args: -mod "$GAMEDIR/drive_c/users/$USER/Application Data/My Battle for Middle-earth"
+  wine:
+    dxvk: true
+  requires: lord-of-the-rings-battle-for-middle-earth-ii

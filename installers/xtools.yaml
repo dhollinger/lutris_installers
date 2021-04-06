@@ -1,0 +1,12 @@
+results:
+- game_slug: x-tools
+  name: X Tools
+  year: 2018
+  user: citrusalex
+  runner: winesteam
+  slug: xtools-steam
+  version: Steam
+  steamid: 282160
+  script:
+    game:
+      appid: 282160

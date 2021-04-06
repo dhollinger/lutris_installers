@@ -11,7 +11,7 @@ results:
       - install: N/A:Select the installer provided by GOG.
       - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
       - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
-      - xwaupatch1: https://www.xwaupgrade.com/download/installers/XWAU2020update_v1.0.exe
+      - patch: https://www.xwaupgrade.com/download/installers/XWAU2020update_v2.1.exe
       - radiobutton: https://github.com/dhollinger/lutris_installers/raw/master/installers/xwa/RadioButtonBox.exe
       - launcher: https://raw.githubusercontent.com/dhollinger/lutris_installers/master/installers/xwa/xwa.bat
       - cmdow: https://github.com/ritchielawrence/cmdow/archive/v1.4.8.zip
@@ -41,6 +41,12 @@ results:
           arch: win64
           description: Running installer. Please quit the installer at the end, do not run the game until this script finishes installing.
           executable: install
+          name: wineexec
+          prefix: $GAMEDIR
+      - task:
+          arch: win64
+          description: Running patcher.
+          executable: patch
           name: wineexec
           prefix: $GAMEDIR
       - extract:
