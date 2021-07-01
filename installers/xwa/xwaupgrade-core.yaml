@@ -11,14 +11,10 @@ results:
       - install: N/A:Select the installer provided by GOG.
       - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
       - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
-      - patch: https://www.xwaupgrade.com/download/installers/XWAU2020update_v2.1.exe
-      - radiobutton: https://github.com/dhollinger/lutris_installers/raw/master/installers/xwa/RadioButtonBox.exe
-      - launcher: https://raw.githubusercontent.com/dhollinger/lutris_installers/master/installers/xwa/xwa.bat
-      - cmdow: https://github.com/ritchielawrence/cmdow/archive/v1.4.8.zip
+      - patch: https://www.xwaupgrade.com/download/installers/XWAU2020update_v4.0.exe
       game:
         arch: win64
-        exe: drive_c/GOG Games/Star Wars - X-Wing Alliance/cmdow.exe
-        args: /run /hid xwa.bat
+        exe: drive_c/GOG Games/Star Wars - X-Wing Alliance/Alliance.EXE
         prefix: $GAMEDIR
       installer:
       - task:
@@ -45,34 +41,14 @@ results:
           prefix: $GAMEDIR
       - task:
           arch: win64
-          description: Running patcher.
-          executable: patch
-          name: wineexec
-          prefix: $GAMEDIR
-      - extract:
-          file: cmdow
-          dst: $CACHE/cmdow
-      - move:
-          dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/cmdow.exe
-          src: $CACHE/cmdow/bin/Release/cmdow.exe
-      - move:
-          dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/xwa.bat
-          src: launcher
-      - move:
-          dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/RadioButtonBox.exe
-          src: radiobutton
-      - chmodx: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/xwa.bat
-      - chmodx: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/RadioButtonBox.exe
-      - task:
-          arch: win64
           description: Installing XWA Upgrade 2020
           executable: xwaupgrade
           name: wineexec
           prefix: $GAMEDIR
       - task:
           arch: win64
-          description: Installing XWA Upgrade 2020 Patch 1
-          executable: xwaupatch1
+          description: Installing XWA Upgrade 2020 Patch 4
+          executable: patch
           name: wineexec
           prefix: $GAMEDIR
       - extract:
@@ -120,7 +96,19 @@ results:
       - task:
           key: d3d9
           name: set_regedit
-          path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\XWAU2020update_v1.0.exe\DllOverrides
+          path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\XWAU2020update_v4.0.exe\DllOverrides
+          type: REG_SZ
+          value: builtin
+      - task:
+          key: d3d9
+          name: set_regedit
+          path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\Alliance.exe\DllOverrides
+          type: REG_SZ
+          value: builtin
+      - task:
+          key: d3d9
+          name: set_regedit
+          path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\XwaJoystickConfig.exe\DllOverrides
           type: REG_SZ
           value: builtin
       - task:
@@ -134,6 +122,7 @@ results:
           ddraw.dll: n, b
           dinput.dll: n, b
         dxvk: false
+        version: lutris-5.6-5-x86_64
       system:
         env:
           DXVK_STATE_CACHE: '0'
