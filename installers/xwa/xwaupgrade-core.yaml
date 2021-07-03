@@ -83,34 +83,35 @@ results:
           app: dxvk
       - task:
           key: d3d9
+          description: Set BabuFriksConfigurator to not use DXVK
           name: set_regedit
           path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\BabuFriksConfigurator.exe\DllOverrides
           type: REG_SZ
           value: builtin
       - task:
           key: d3d9
+          description: Set PalpatineTotalConverter to not use DXVK
           name: set_regedit
           path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\PalpatineTotalConverter.exe\DllOverrides
           type: REG_SZ
           value: builtin
       - task:
           key: d3d9
-          name: set_regedit
-          path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\XWAU2020update_v4.0.exe\DllOverrides
-          type: REG_SZ
-          value: builtin
-      - task:
-          key: d3d9
+          description: Set Launcher to not use DXVK
           name: set_regedit
           path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\Alliance.exe\DllOverrides
           type: REG_SZ
           value: builtin
       - task:
           key: d3d9
+          description: Set Joystick Configuration Tool to not use DXVK
           name: set_regedit
           path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\XwaJoystickConfig.exe\DllOverrides
           type: REG_SZ
           value: builtin
+      - move:
+          src: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/Hook_Joystick_Ff.dll
+          dst: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/Hook_Joystick_Ff.dll.old
       - task:
           arch: win64
           description: Setting Windows 10 mode
