@@ -9,7 +9,6 @@ results:
     script:
       files:
       - install: N/A:Select the installer provided by GOG.
-      - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
       - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
       - patch: https://www.xwaupgrade.com/download/installers/XWAU2020update_v4.0.exe
       game:
@@ -19,6 +18,7 @@ results:
       installer:
       - task:
           arch: win64
+          description: Creating WINE Prefix
           name: create_prefix
           prefix: $GAMEDIR
       - task:
@@ -33,6 +33,24 @@ results:
           name: winetricks
           prefix: $GAMEDIR
           app: directplay
+      - task:
+          arch: win64
+          description: Installing Visual C++ Runtime 2017
+          name: winetricks
+          prefix: $GAMEDIR
+          app: vcrun2017
+      - task:
+          arch: win64
+          description: Installing Visual BASIC 6 Runtime
+          name: winetricks
+          prefix: $GAMEDIR
+          app: vbrun6
+      - task:
+          arch: win64
+          description: Installing oleaut32
+          name: winetricks
+          prefix: $GAMEDIR
+          app: oleaut32
       - task:
           arch: win64
           description: Running installer. Please quit the installer at the end, do not run the game until this script finishes installing.
@@ -51,30 +69,6 @@ results:
           executable: patch
           name: wineexec
           prefix: $GAMEDIR
-      - extract:
-          description: Prepare XWAHacker
-          dst: $CACHE/xwahacker
-          file: xwahacker
-          format: zip
-      - task:
-          args: XWINGALLIANCE.EXE -c 0
-          executable: $CACHE/xwahacker/xwahacker.exe
-          name: wineexec
-          prefix: $GAMEDIR
-          working_dir: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/
-      - task:
-          args: XWINGALLIANCE.EXE -c 7
-          executable: $CACHE/xwahacker/xwahacker.exe
-          name: wineexec
-          prefix: $GAMEDIR
-          working_dir: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/
-      - task:
-          description: Set resolution, FoV, and HUD scaling
-          args: XWINGALLIANCE.EXE -r 3 1920 1080
-          executable: $CACHE/xwahacker/xwahacker.exe
-          name: wineexec
-          prefix: $GAMEDIR
-          working_dir: $GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/
       - task:
           arch: win64
           description: setup DXVK manually
