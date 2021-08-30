@@ -1,0 +1,15 @@
+results:
+  - name: Valkyrie GM
+    game_slug: valkyrie-gm
+    version: github
+    slug: valkyrie-gm-github
+    runner: linux
+    script:
+      files:
+      - valkyrie: https://github.com/NPBruce/valkyrie/releases/download/release/2.5/v2.5.6/valkyrie-linux-2.5.6.tar.gz
+      game:
+        exe: valkyrie.x86_64
+      installer:
+        - extract:
+            file: valkyrie
+            dst: $GAMEDIR
