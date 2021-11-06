@@ -11,10 +11,7 @@ results:
       files:
       - tftc: https://www.moddb.com/downloads/mirror/216339/124/e44ac8a30013843ba811b9e808c7fe50/?referer=https%3A%2F%2Fwww.moddb.com%2Fmods%2Ftie-fighter-total-conversion-tftc%2Fdownloads
       - 7zz: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/7zz
-      - tftc-patch: https://www.moddb.com/downloads/mirror/217317/115/403f612412da8b6a9bf203d56aad23f8/?referer=https%3A%2F%2Fwww.moddb.com%2Fmods%2Ftie-fighter-total-conversion-tftc%2Fdownloads
-        #          filename: TFTC_Update_1.1.zip
-        #  url: https://www.moddb.com/downloads/start/217317/115/403f612412da8b6a9bf203d56aad23f8
-        #  referer: https://www.moddb.com/mods/tie-fighter-total-conversion-tftc/downloads
+      - tftc-patch: https://www.moddb.com/downloads/mirror/217317/121/c5464c22ef00af806e3efe2e29811464/?referer=https%3A%2F%2Fwww.moddb.com%2Fmods%2Ftie-fighter-total-conversion-tftc%2Fdownloads
       game:
         arch: win64
       installer:

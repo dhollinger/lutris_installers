@@ -1,0 +1,89 @@
+count: 1
+next: null
+previous: null
+results:
+  - id: 16283
+    game_id: 3731
+    game_slug: final-fantasy-xi-online
+    name: FINAL FANTASY XI Online
+    year: 2003
+    user: khandha
+    runner: wine
+    slug: final-fantasy-xi-full-us
+    version: Full (US)
+    description: Full install of the US region version of PlayOnline and Final Fantasy XI with all expansions. Also configures dgVoodoo+DXVK for better performance.
+    notes: The graphics settings for the game are configured with a separate utility found at "C:\Program Files (x86)\PlayOnline\SquareEnix\FINAL FANTASY XI\ToolsUS\FINAL FANTASY XI Config.exe"
+    created_at: "2019-10-19T16:16:14.010000Z"
+    updated_at: "2021-01-09T18:36:15.627404Z"
+    draft: false
+    published: true
+    published_by: 64834
+    rating: ""
+    steamid: 23360
+    gogid: null
+    gogslug: ""
+    humbleid: ""
+    humblestoreid: ""
+    humblestoreid_real: ""
+    script:
+      files:
+        - installer_part1: https://gdl.square-enix.com/ffxi/download/us/FFXIFullSetup_US.part1.exe
+        - installer_part2: https://gdl.square-enix.com/ffxi/download/us/FFXIFullSetup_US.part2.rar
+        - installer_part3: https://gdl.square-enix.com/ffxi/download/us/FFXIFullSetup_US.part3.rar
+        - installer_part4: https://gdl.square-enix.com/ffxi/download/us/FFXIFullSetup_US.part4.rar
+        - installer_part5: https://gdl.square-enix.com/ffxi/download/us/FFXIFullSetup_US.part5.rar
+        - dgvoodoo: http://www.dege.freeweb.hu/dgVoodoo2/bin/dgVoodoo2_7.zip
+      game:
+        exe: drive_c/Program Files (x86)/PlayOnline/SquareEnix/FINAL FANTASY XI/polboot.exe
+        prefix: $GAMEDIR
+      installer:
+        - execute:
+            args: -s -t "$CACHE" "$installer_part1" "$installer_part2" "$installer_part3" "$installer_part4" "$installer_part5"
+            description: Preparing installer archive
+            file: ln
+        - task:
+            description: Extracting installer archive
+            executable: installer_part1
+            name: wineexec
+        - task:
+            args: -q -i "$CACHE/FFXIFullSetup_US/PlayOnline/PlayOnlineViewer.msi"
+            description: Installing PlayOnline
+            executable: msiexec
+            name: wineexec
+        - task:
+            args: -q -i "$CACHE/FFXIFullSetup_US/FINAL_FANTASY_XI/FINAL_FANTASY_XI.msi"
+            description: Installing Final Fantasy XI
+            executable: msiexec
+            name: wineexec
+        - task:
+            app: d3dcompiler_43 d3dcompiler_47
+            description: Installing d3dcompiler
+            name: winetricks
+        - extract:
+            description: Extracting dgVoodoo
+            dst: $CACHE/dgVoodoo
+            file: dgvoodoo
+        - copy:
+            description: Installing dgVoodoo
+            dst: $GAMEDIR/drive_c/Program Files (x86)/PlayOnline/SquareEnix/PlayOnlineViewer/
+            src: $CACHE/dgVoodoo/MS/x86/
+        - copy:
+            description: Installing dgVoodoo
+            dst: $GAMEDIR/drive_c/Program Files (x86)/PlayOnline/SquareEnix/FINAL FANTASY XI/
+            src: $CACHE/dgVoodoo/MS/x86/
+        - write_config:
+            data:
+              DirectX:
+                VRAM: 1024
+                dgVoodooWatermark: false
+            description: Configuring dgVoodoo
+            file: $GAMEDIR/drive_c/Program Files (x86)/PlayOnline/SquareEnix/PlayOnlineViewer/dgVoodoo.conf
+      wine:
+        dxvk: true
+        esync: true
+        overrides:
+          d3d8: n,b
+          d3d9: n,b
+          d3dimm: n,b
+          ddraw: n,b
+
