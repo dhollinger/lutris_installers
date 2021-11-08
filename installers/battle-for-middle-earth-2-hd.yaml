@@ -44,11 +44,6 @@ script:
           HasSeenLogoMovies = yes\n
           TimesInGame = 1'
         file: $GAMEDIR/drive_c/users/$USER/Application Data/My Battle for Middle-earth(tm) II Files/Options.ini
-        #    - task:
-          #arch: win64
-          #description: first launch
-          #executable: $GAMEDIR/drive_c/Program Files (x86)/Electronic Arts/The Battle for Middle-earth (tm) II/lotrbfme2.exe
-          # args: -mod "$GAMEDIR/drive_c/users/$USER/Application Data/My Battle for Middle-earth"
   wine:
     dxvk: true
   requires: lord-of-the-rings-battle-for-middle-earth-ii

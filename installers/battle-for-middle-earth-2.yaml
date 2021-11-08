@@ -57,4 +57,4 @@ results:
               FlashTutorial = 0
               HasSeenLogoMovies = yes
               TimesInGame = 1
-          file: $GAMEDIR/drive_c/users/$USER/Application Data/My Battle for Middle-earth(tm) II Files/Options.ini
+            file: $GAMEDIR/drive_c/users/$USER/Application Data/My Battle for Middle-earth(tm) II Files/Options.ini
