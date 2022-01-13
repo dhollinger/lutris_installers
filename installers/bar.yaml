@@ -1,0 +1,19 @@
+results:
+- id: 24568
+  game_id: 40291
+  game_slug: beyond-all-reason
+  name: Beyond All Reason
+  year: 2020
+  runner: linux
+  slug: beyond-all-reason-alpha
+  version: Alpha
+  script:
+    files:
+    - bar: "https://github.com/beyond-all-reason/BYAR-Chobby/releases/download/v1.1252.0/Beyond-All-Reason-1.1252.0.AppImagei"
+    game:
+      exe: "$GAMEDIR/bar.AppImage"
+    installer:
+    - move:
+        dst: "$GAMEDIR/bar.AppImage"
+        src: bar
+    - chmodx: "$GAMEDIR/bar.AppImage"

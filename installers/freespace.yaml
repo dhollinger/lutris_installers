@@ -1,0 +1,23 @@
+results:
+  - name: Freespace 2
+    game_id: 3650
+    id: 2675
+    runner: wine
+    slug: freespace-2-gog
+    game_slug: freespace-2
+    version: GOG
+    gogid: 5
+    gogslug: freespace_2
+    script:
+      files:
+        - game: N/A:Please select the GOG.com Windows
+      installer:
+        - task:
+            name: create_prefix
+            prefix: $GAMEDIR
+        - task:
+            args: "/VERYSILENT /SP- /NOCANCEL /SUPPRESSMSGBOXES '/DIR=C:/game'"
+            description: Installing...
+            executable: game
+            name: wineexec
+            prefix: "$GAMEDIR"
