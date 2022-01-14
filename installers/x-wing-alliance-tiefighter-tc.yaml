@@ -9,9 +9,8 @@ results:
     script:
       extends: star-wars-x-wing-alliance
       files:
-      - tftc: https://www.moddb.com/downloads/mirror/216339/124/e44ac8a30013843ba811b9e808c7fe50/?referer=https%3A%2F%2Fwww.moddb.com%2Fmods%2Ftie-fighter-total-conversion-tftc%2Fdownloads
       - 7zz: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/7zz
-      - tftc-patch: https://www.moddb.com/downloads/mirror/217317/121/c5464c22ef00af806e3efe2e29811464/?referer=https%3A%2F%2Fwww.moddb.com%2Fmods%2Ftie-fighter-total-conversion-tftc%2Fdownloads
+      - tftc: https://www.xwaupgrade.com/download/installers/TFTC_1.2.7z
       game:
         arch: win64
       installer:
@@ -20,33 +19,16 @@ results:
           key: d3d9
           description: Set TFTC Installer to not use DXVK
           name: set_regedit
-          path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\TFTC_1.0.exe\DllOverrides
-          type: REG_SZ
-          value: builtin
-      - task:
-          arch: win64
-          key: d3d9
-          description: Set TFTC Patch to not use DXVK
-          name: set_regedit
-          path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\TFTC_Update_1.1.exe\DllOverrides
+          path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\TFTC_1.2.exe\DllOverrides
           type: REG_SZ
           value: builtin
       - execute:
           args: e tftc -o$CACHE
           file: 7zz
-      - execute:
-          args: e tftc-patch -o$CACHE
-          file: 7zz
       - task:
           arch: win64
           description: Running TFTC installer. This will take a while.....
-          executable: $CACHE/TFTC_1.0.exe
-          name: wineexec
-          prefix: $GAMEDIR
-      - task:
-          arch: win64
-          description: Running TFTC patcher. This will take a while.....
-          executable: $CACHE/TFTC_Update_1.1.exe
+          executable: $CACHE/TFTC_1.2.exe
           name: wineexec
           prefix: $GAMEDIR
       - task:
