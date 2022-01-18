@@ -1,0 +1,19 @@
+results:
+  - name: "OpenRA Combined Arms"
+    game_slug: openra-combined-arms
+    version: native
+    slug: openra-combined-arms
+    runner: linux
+    script:
+      files:
+      - combined: https://github.com/Inq8/CAmod/releases/download/0.73/CombinedArms-0.73-x86_64.AppImage
+      game:
+        exe: "$GAMEDIR/CombinedArms.AppImage"
+      installer:
+      - move:
+          dst: "$GAMEDIR/CombinedArms.AppImage"
+          src: combined
+      - chmodx: "$GAMEDIR/CombinedArms.AppImage"
+      system:
+        env:
+          APPIMAGELAUNCHER_DISABLE: true
