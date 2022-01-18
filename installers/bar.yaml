@@ -9,7 +9,7 @@ results:
   version: Alpha
   script:
     files:
-    - bar: "https://github.com/beyond-all-reason/BYAR-Chobby/releases/download/v1.1252.0/Beyond-All-Reason-1.1252.0.AppImagei"
+    - bar: "https://github.com/beyond-all-reason/BYAR-Chobby/releases/download/v1.1351.0/Beyond-All-Reason-1.1351.0.AppImage"
     game:
       exe: "$GAMEDIR/bar.AppImage"
     installer:
@@ -17,3 +17,6 @@ results:
         dst: "$GAMEDIR/bar.AppImage"
         src: bar
     - chmodx: "$GAMEDIR/bar.AppImage"
+    system:
+      env:
+        APPIMAGELAUNCHER_DISABLE: true
