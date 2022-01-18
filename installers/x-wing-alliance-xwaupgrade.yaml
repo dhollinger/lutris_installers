@@ -10,7 +10,7 @@ results:
       files:
       - install: N/A:Select the installer provided by GOG.
       - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
-      - patch: https://www.xwaupgrade.com/download/installers/XWAU2020update_v4.0.exe
+      - patch: https://xwaupgrade.com/download/installers/XWAU2020update_v5.0.exe
       game:
         arch: win64
         exe: drive_c/GOG Games/Star Wars - X-Wing Alliance/Alliance.EXE
@@ -47,7 +47,7 @@ results:
           prefix: $GAMEDIR
       - task:
           arch: win64
-          description: Installing XWA Upgrade 2020 Patch 4
+          description: Installing XWA Upgrade 2020 Patch 5
           executable: patch
           name: wineexec
           prefix: $GAMEDIR
