@@ -39,6 +39,18 @@ results:
           app: vcrun2015
       - task:
           arch: win64
+          description: installing wmp9
+          name: winetricks
+          prefix: $GAMEDIR
+          app: wmp8
+      - task:
+          arch: win64
+          description: installing wmv9vcm
+          name: winetricks
+          prefix: $GAMEDIR
+          app: wmv9
+      - task:
+          arch: win64
           key: d3d9
           description: Set Updated Palpatine Converter to not use DXVK
           name: set_regedit
