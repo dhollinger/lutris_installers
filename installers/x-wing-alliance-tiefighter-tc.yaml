@@ -39,18 +39,6 @@ results:
           app: vcrun2015
       - task:
           arch: win64
-          description: installing wmp9
-          name: winetricks
-          prefix: $GAMEDIR
-          app: wmp8
-      - task:
-          arch: win64
-          description: installing wmv9vcm
-          name: winetricks
-          prefix: $GAMEDIR
-          app: wmv9
-      - task:
-          arch: win64
           key: d3d9
           description: Set Updated Palpatine Converter to not use DXVK
           name: set_regedit
@@ -92,7 +80,7 @@ results:
           ddraw.dll: n, b
           dinput.dll: n, b
         dxvk: false
-        version: lutris-5.6-5-x86_64
+        version: lutris-7.2-x86_64
       system:
         env:
           DXVK_STATE_CACHE: '0'

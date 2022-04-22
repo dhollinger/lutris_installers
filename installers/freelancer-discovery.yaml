@@ -11,7 +11,7 @@ results:
       - d3d8to9: https://github.com/crosire/d3d8to9/releases/download/v1.11.0/d3d8.dll
       game:
         arch: win32
-        exe: $GAMEDIR/drive_c/users/$USER/Local Settings/Application Data/Discovery Freelancer 4.91.0/DSLauncher.exe
+        exe: $GAMEDIR/drive_c/users/$USER/AppData/Local/Discovery Freelancer 4.91.0/DSLauncher.exe
         prefix: $GAMEDIR
       installer:
       - task:
@@ -46,6 +46,7 @@ results:
           executable: $DISC/setup.exe
           name: wineexec
           prefix: $GAMEDIR
+          return_code: 256
       - task:
           description: Installing Discovery Mod
           executable: discovery
@@ -53,11 +54,12 @@ results:
           prefix: $GAMEDIR
       - execute:
           description: Backup old d3d8.dll file
-          command: 'mv $GAMEDIR/drive_c/users/$USER/Local Settings/Application Data/Discovery Freelancer 4.91.0/EXE/d3d8.dll $GAMEDIR/drive_c/users/$USER/Local Settings/Application Data Discovery Freelancer 4.91.0/EXE/d3d8.dll.bak'
+          command: 'mv $GAMEDIR/drive_c/users/$USER/AppData/Local/Discovery Freelancer 4.91.0/EXE/d3d8.dll $GAMEDIR/drive_c/users/$USER/AppData/Local/Discovery Freelancer 4.91.0/EXE/d3d8.dll.bak'
+          return_code: 256
       - move:
           description: Install d3d8to9
           src: d3d8to9
-          dst: $GAMEDIR/drive_c/users/$USER/Local Settings/Application Data/Discovery Freelancer 4.91.0/EXE/d3d8.dll
+          dst: $GAMEDIR/drive_c/users/$USER/AppData/Local/Discovery Freelancer 4.91.0/EXE/d3d8.dll
       wine:
         overrides:
           d3d8.dll: n, b
