@@ -14,12 +14,6 @@ results:
         exe: $GAMEDIR/drive_c/Program Files (x86)/Electronic Arts/The Lord of the Rings, The Rise of the Witch-king/lotrbfme2ep1.exe
         prefix: $GAMEDIR
       installer:
-        - task:
-            arch: win64
-            description: Set patch version to 1.06
-            executable: $GAMEDIR/drive_c/Program Files (x86)/BFME2 PatchSwitcher/BFME2 PatchSwitcher.exe
-            name: wineexec
-            prefix: $GAMEDIR
         - insert-disc:
             requires: AutoRun.exe
         - task:

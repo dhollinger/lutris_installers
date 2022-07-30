@@ -10,12 +10,12 @@ results:
       - wmfdist: https://r.je/freelancer/WMFDIST.EXE
       - d3d8to9: https://github.com/crosire/d3d8to9/releases/download/v1.11.0/d3d8.dll
       game:
-        arch: win32
+        arch: win64
         exe: $GAMEDIR/drive_c/users/$USER/AppData/Local/Discovery Freelancer 4.91.0/DSLauncher.exe
         prefix: $GAMEDIR
       installer:
       - task:
-          arch: win32
+          arch: win64
           description: Creating Wine prefix
           name: create_prefix
           prefix: $GAMEDIR
@@ -36,9 +36,9 @@ results:
           app: msacm32
       - task:
           name: winetricks
-          description: Installing .NET 4.0
+          description: Installing .NET 4.6
           prefix: $GAMEDIR
-          app: dotnet40
+          app: dotnet46
       - insert-disc:
           requires: setup.exe
       - task:

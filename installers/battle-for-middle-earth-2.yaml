@@ -6,11 +6,7 @@ results:
     runner: wine
     script:
       files:
-        - patch109:
-            filename: BFME2 PatchSwitcher Setup.exe
-            referer: https://duckduckgo.com
-            url: http://www.shatabrick.org/downloads/BFME2%20PatchSwitcher%20Setup.exe
-        - nocd: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/game.zip
+        patch106: N/A:Choose setup file
       game:
         arch: win64
         exe: $GAMEDIR/drive_c/Program Files (x86)/Electronic Arts/The Battle for Middle-earth (tm) II/lotrbfme2.exe
@@ -32,12 +28,9 @@ results:
         - task:
             arch: win64
             description: Install PatchSwitcher
-            executable: patch109
+            executable: patch106
             name: wineexec
             prefix: $GAMEDIR
-        - extract:
-            file: nocd
-            dst: $GAMEDIR/drive_c/Program Files (x86)/Electronic Arts/The Battle for Middle-earth (tm) II/
         - write_file:
             content: >-
               AllHealthBars = yes

@@ -2,11 +2,8 @@ results:
   - game_slug: torchlight
     name: Torchlight
     runner: linux
-    slug: torchlight-humble
-    version: Humble
-    humbleid: torchlight
-    humblestoreid: torchlight
-    humblestoreid_real: torchlight
+    slug: torchlight
+    version: Linux
     script:
       files:
       - game: 'N/A: Please select the .sh install file downloaded from humblebundle.com'

@@ -7,38 +7,25 @@ results:
     gogid: 1421404763
     gogslug: star_wars_xwing_alliance
     script:
+      extends: star-wars-x-wing-alliance
       files:
-      - install: N/A:Select the installer provided by GOG.
       - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
       - patch: https://xwaupgrade.com/download/installers/XWAU2020update_v5.0.exe
       game:
         arch: win64
-        exe: drive_c/GOG Games/Star Wars - X-Wing Alliance/Alliance.EXE
-        prefix: $GAMEDIR
       installer:
       - task:
           arch: win64
-          description: Creating WINE Prefix
-          name: create_prefix
-          prefix: $GAMEDIR
-      - task:
-          arch: win64
-          description: Installing .NET 4.6
+          description: Installing .NET 4.8
           name: winetricks
           prefix: $GAMEDIR
-          app: dotnet46
+          app: dotnet48
       - task:
           arch: win64
           description: Installing DirectPlay
           name: winetricks
           prefix: $GAMEDIR
           app: directplay
-      - task:
-          arch: win64
-          description: Running installer. Please quit the installer at the end, do not run the game until this script finishes installing.
-          executable: install
-          name: wineexec
-          prefix: $GAMEDIR
       - task:
           arch: win64
           description: Installing XWA Upgrade 2020
@@ -95,11 +82,11 @@ results:
           prefix: $GAMEDIR
           app: win10
       wine:
+        dxvk: false
         overrides:
           ddraw.dll: n, b
           dinput.dll: n, b
-        dxvk: false
-        version: lutris-7.2-x86_64
+        version: lutris-5.6-5-x86_64
       system:
         env:
           DXVK_STATE_CACHE: '0'
