@@ -1,0 +1,34 @@
+results:
+  - name: "Ashes: 2063"
+    runner: zdoom
+    game_slug: ashes-2063-enriched-edition
+    slug: ashes-2063-2.3
+    version: 2.3 
+    script:
+      files:
+      - freedoom: https://github.com/freedoom/freedoom/releases/download/v0.12.1/freedoom-0.12.1.zip
+      - ashes: N/A:Select the downloaded zip file
+      - zmusic: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/libzmusic.1.1.10.tar.gz
+      game:
+        main_file: $GAMEDIR/freedoom2.wad
+        files:
+          - Ashes2063Enriched2_23.pk3
+      installer:
+      - extract:
+          dst: $GAMEDIR
+          file: zmusic
+      - extract:
+          dst: $CACHE/freedoom
+          file: freedoom
+      - move:
+          dst: $GAMEDIR
+          src: $CACHE/freedoom/freedoom2.wad
+      - extract:
+          dst: $CACHE/ashes
+          file: ashes
+      - move:
+          dst: $GAMEDIR
+          src: $CACHE/ashes/Ashes2063Enriched2_23.pk3
+      system:
+        env:
+          LD_LIBRARY_PATH: $GAMEDIR

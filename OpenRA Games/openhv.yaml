@@ -1,0 +1,19 @@
+results:
+  - name: "OpenHV"
+    game_slug: openhv
+    version: native
+    slug: openhv
+    runner: linux
+    script:
+      files:
+      - openhv: https://github.com/OpenHV/OpenHV/releases/download/20220526/OpenHV-20220526-x86_64.AppImage
+      game:
+        exe: "$GAMEDIR/OpenHV.AppImage"
+      installer:
+      - move:
+          dst: "$GAMEDIR/OpenHV.AppImage"
+          src: openhv
+      - chmodx: "$GAMEDIR/OpenHV.AppImage"
+      system:
+        env:
+          APPIMAGELAUNCHER_DISABLE: true

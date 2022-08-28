@@ -70,7 +70,6 @@ results:
       overrides:
         ddraw.dll: n, b
         dinput.dll: n, b
-      version: lutris-5.6-5-x86_64
     system:
       env:
         DXVK_STATE_CACHE: '0'

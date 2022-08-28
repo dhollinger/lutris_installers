@@ -81,7 +81,6 @@ results:
           ddraw.dll: n, b
           dinput.dll: n, b
         dxvk: false
-        version: lutris-7.2-x86_64
       system:
         env:
           DXVK_STATE_CACHE: '0'
