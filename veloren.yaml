@@ -6,7 +6,7 @@ results:
     runner: linux
     script:
       files:
-      - veloren: https://github.com/Songtronix/Airshipper/releases/download/v0.4.0/airshipper-linux.zip
+      - veloren: https://github.com/veloren/airshipper/releases/latest/download/airshipper-linux.tar.gz
       game:
         exe: airshipper
       installer:

@@ -7,19 +7,19 @@ script:
   files:
     - hdmod: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/BFME2HDEdition_setup.1.exe
   game:
-    arch: win64
+    arch: win32
     args: -mod "$GAMEDIR/drive_c/users/$USER/Application Data/My Battle for Middle-earth(tm) II Files/HDEdition.big"
     exe: $GAMEDIR/drive_c/Program Files (x86)/Electronic Arts/The Battle for Middle-earth(tm) II/lotrbfme2.exe
     prefix: $GAMEDIR
   installer:
     - task:
-        arch: win64
+        arch: win32
         description: Set patch version to 1.09
         executable: $GAMEDIR/drive_c/Program Files (x86)/BFME2 PatchSwitcher/BFME2 PatchSwitcher.exe
         name: wineexec
         prefix: $GAMEDIR
     - task:
-        arch: win64
+        arch: win32
         description: Installing hd mod
         executable: hdmod
         name: wineexec

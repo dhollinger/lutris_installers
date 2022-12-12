@@ -6,27 +6,27 @@ results:
     runner: wine
     script:
       files:
-        patch106: N/A:Choose setup file
+        - patch106: N/A:Choose setup file
       game:
-        arch: win64
+        arch: win32
         exe: $GAMEDIR/drive_c/Program Files (x86)/Electronic Arts/The Battle for Middle-earth (tm) II/lotrbfme2.exe
         prefix: $GAMEDIR
       installer:
         - task:
-            arch: win64
+            arch: win32
             name: create_prefix
             prefix: $GAMEDIR
         - insert-disc:
             requires: AutoRun.exe
         - task:
-            arch: win64
+            arch: win32
             description: Run Installer
             executable: $DISC/AutoRun.exe
             name: wineexec
             prefix: $GAMEDIR
             working_dir: $DISC
         - task:
-            arch: win64
+            arch: win32
             description: Install PatchSwitcher
             executable: patch106
             name: wineexec
