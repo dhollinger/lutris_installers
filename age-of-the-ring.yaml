@@ -1,0 +1,29 @@
+results:
+  - name: Lord of the Rings - Battle for Middle-Earth II - Age of the Ring
+    game_slug: lord-of-the-rings-battle-for-middle-earth-ii-aotr
+    slug: lord-of-the-rings-battle-for-middle-earth-ii-rise-aotr
+    version: AOTR
+    runner: wine
+    script:
+      files:
+        - aotr: N/A:Please select AOTR Installer
+      game:
+        arch: win32
+        args: -mod "C:\Program Files\Age of the Ring\aotr"
+        exe: $GAMEDIR/drive_c/Program Files/Electronic Arts/The Lord of the Rings, The Rise of the Witch-king/lotrbfme2ep1.exe
+        prefix: $GAMEDIR
+      installer:
+        - task:
+            arch: win32
+            description: Set patch to 2.02 v8.0.1
+            executable: $GAMEDIR/drive_c/Program Files/Electronic Arts/The Lord of the Rings, The Rise of the Witch-king/202_launcher.exe 
+            name: wineexec
+            prefix: $GAMEDIR
+        - task:
+            arch: win32
+            description: Install Age of the Ring
+            executable: aotr
+            name: wineexec
+            prefix: $GAMEDIR
+      requires: lord-of-the-rings-battle-for-middle-earth-ii
+

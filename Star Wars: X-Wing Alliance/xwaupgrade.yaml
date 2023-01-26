@@ -8,36 +8,36 @@ results:
     gogslug: star_wars_xwing_alliance
     script:
       extends: star-wars-x-wing-alliance
-      files:
-      - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
-      - patch: https://xwaupgrade.com/download/installers/XWAU2020update_v5.0.exe
+      # files:
+      # - xwaupgrade: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
+      # - patch: https://xwaupgrade.com/download/installers/XWAU2020update_v5.0.exe
       game:
         arch: win64
       installer:
-      - task:
-          arch: win64
-          description: Installing .NET 4.8
-          name: winetricks
-          prefix: $GAMEDIR
-          app: dotnet48
-      - task:
-          arch: win64
-          description: Installing DirectPlay
-          name: winetricks
-          prefix: $GAMEDIR
-          app: directplay
-      - task:
-          arch: win64
-          description: Installing XWA Upgrade 2020
-          executable: xwaupgrade
-          name: wineexec
-          prefix: $GAMEDIR
-      - task:
-          arch: win64
-          description: Installing XWA Upgrade 2020 Patch 5
-          executable: patch
-          name: wineexec
-          prefix: $GAMEDIR
+      # - task:
+      #     arch: win64
+      #     description: Installing .NET 4.8
+      #     name: winetricks
+      #     prefix: $GAMEDIR
+      #     app: dotnet48
+      # - task:
+      #     arch: win64
+      #     description: Installing DirectPlay
+      #     name: winetricks
+      #     prefix: $GAMEDIR
+      #     app: directplay
+      # - task:
+      #     arch: win64
+      #     description: Installing XWA Upgrade 2020
+      #     executable: xwaupgrade
+      #     name: wineexec
+      #     prefix: $GAMEDIR
+      # - task:
+      #     arch: win64
+      #     description: Installing XWA Upgrade 2020 Patch 5
+      #     executable: patch
+      #     name: wineexec
+      #     prefix: $GAMEDIR
       - task:
           arch: win64
           description: setup DXVK manually

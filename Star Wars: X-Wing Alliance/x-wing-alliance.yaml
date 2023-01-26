@@ -13,7 +13,7 @@ results:
   gogslug: star_wars_xwing_alliance
   script:
     files:
-    - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
+    - xwahacker: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/xwahacker-3.2.zip
     - install: N/A:Select the installer provided by GOG.
     game:
       arch: win64

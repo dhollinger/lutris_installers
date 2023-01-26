@@ -1,0 +1,33 @@
+---
+results:
+- id: 19766
+  game_id: 21
+  game_slug: diablo-ii
+  name: Diablo II
+  year: 2000
+  runner: wine
+  slug: diablo-ii-us
+  version: US
+  description: Battle.net US version
+  script:
+    files:
+    - installer:
+        filename: Downloader_Diablo2_enUS.exe
+        url: https://us.battle.net/download/getLegacy?os=win&locale=enUS&product=D2DV
+    game:
+      args: "-w"
+      arch: win32
+      exe: drive_c/Program Files (x86)/Diablo II/Diablo II.exe
+      prefix: "$GAMEDIR"
+    installer:
+    - task:
+        arch: win32
+        name: create_prefix
+        prefix: $GAMEDIR
+    - task:
+        arch: win32
+        executable: installer
+        name: wineexec
+        prefix: "$GAMEDIR"
+    wine:
+      version: lutris-5.6-5-x86_64

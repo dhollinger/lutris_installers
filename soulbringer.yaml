@@ -1,0 +1,25 @@
+game_slug: soulbringer
+name: Soulbringer
+runner: wine
+slug: soulbringer-gog
+version: US
+description: GOGWine
+script:
+  files:
+  - installer: N/A:Select Installer
+  game:
+    arch: win32
+    exe: drive_c/GOG Games/Soulbringer/Soulbringer.exe
+    prefix: "$GAMEDIR"
+  installer:
+  - task:
+      arch: win32
+      name: create_prefix
+      prefix: $GAMEDIR
+  - task:
+      arch: win32
+      executable: installer
+      name: wineexec
+      prefix: "$GAMEDIR"
+  wine:
+    version: lutris-4.21-x86_64

@@ -11,7 +11,7 @@ results:
         - patch2.02v840: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/202_v840_updater.exe
       game:
         arch: win32
-        exe: $GAMEDIR/drive_c/Program Files (x86)/Electronic Arts/The Lord of the Rings, The Rise of the Witch-king/lotrbfme2ep1.exe
+        exe: $GAMEDIR/drive_c/Program Files/Electronic Arts/The Lord of the Rings, The Rise of the Witch-king/lotrbfme2ep1.exe
         prefix: $GAMEDIR
       installer:
         - insert-disc:
