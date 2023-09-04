@@ -1,0 +1,28 @@
+game_slug: soil
+name: Soil
+runner: wine
+slug: soil-rts
+version: US
+description: Website
+script:
+  files:
+  - installer: http://www.soil-rts.com/downloads/soil.zip
+  - vsredist: https://aka.ms/vs/17/release/vc_redist.x64.exe
+  game:
+    arch: win64
+    exe: drive_c/soil/soil.exe
+    prefix: $GAMEDIR
+  installer:
+  - task:
+      arch: win64
+      name: create_prefix
+      prefix: $GAMEDIR
+  - task:
+      arch: win64
+      description: Installing Visual C++ Redist
+      executable: vsredist
+      name: wineexec
+      prefix: $GAMEDIR
+  - extract:
+      file: installer
+      dst: $GAMEDIR/drive_c/soil/
