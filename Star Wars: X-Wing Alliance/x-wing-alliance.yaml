@@ -13,64 +13,70 @@ results:
   gogslug: star_wars_xwing_alliance
   script:
     files:
-    - xwahacker: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/xwahacker-3.2.zip
+    - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
     - install: N/A:Select the installer provided by GOG.
     game:
-      arch: win64
-      exe: drive_c/GOG Games/Star Wars - X-Wing Alliance/XWINGALLIANCE.EXE
-      prefix: "$GAMEDIR"
+    arch: win64
+    description: XWAUpgrade Mod and Framework
+    exe: drive_c/Games/XWA/Alliance.EXE
+    game_slug: star-wars-x-wing-alliance
+    gogslug: star_wars_xwing_alliance
+    prefix: $GAMEDIR
     installer:
     - task:
         arch: win64
         name: create_prefix
-        prefix: "$GAMEDIR"
+        prefix: $GAMEDIR
     - task:
         arch: win64
-        description: Running installer. Please quit the installer at the end, do not
-          run the game until this script finishes installing.
+        args: /dir="C:\Games\XWA"
+        description: Running installer. Please quit the installer at the end, do not run
+        the game until this script finishes installing. Do not change the installation
+        path if you want to install XWAU/TFTC later
         executable: install
         name: wineexec
-        prefix: "$GAMEDIR"
+        prefix: $GAMEDIR
     - extract:
-        dst: "$CACHE"
+        dst: $CACHE
         file: xwahacker
         format: zip
     - task:
         args: XWINGALLIANCE.EXE -p 71
-        executable: "$CACHE/xwahacker.exe"
+        executable: $CACHE/xwahacker.exe
         name: wineexec
-        prefix: "$GAMEDIR"
-        working_dir: "$GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/"
+        prefix: $GAMEDIR
+        working_dir: $GAMEDIR/drive_c/Games/XWA
     - task:
         args: XWINGALLIANCE.EXE -p 103
-        executable: "$CACHE/xwahacker.exe"
+        executable: $CACHE/xwahacker.exe
         name: wineexec
-        prefix: "$GAMEDIR"
-        working_dir: "$GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/"
+        prefix: $GAMEDIR
+        working_dir: $GAMEDIR/drive_c/Games/XWA
     - task:
         args: XWINGALLIANCE.EXE -c 0
-        executable: "$CACHE/xwahacker.exe"
+        executable: $CACHE/xwahacker.exe
         name: wineexec
-        prefix: "$GAMEDIR"
-        working_dir: "$GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/"
+        prefix: $GAMEDIR
+        working_dir: $GAMEDIR/drive_c/Games/XWA
     - task:
         args: XWINGALLIANCE.EXE -c 7
-        executable: "$CACHE/xwahacker.exe"
+        executable: $CACHE/xwahacker.exe
         name: wineexec
-        prefix: "$GAMEDIR"
-        working_dir: "$GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/"
+        prefix: $GAMEDIR
+        working_dir: $GAMEDIR/drive_c/Games/XWA
     - task:
         args: XWINGALLIANCE.EXE -r 1 1920 1080
-        executable: "$CACHE/xwahacker.exe"
+        executable: $CACHE/xwahacker.exe
         name: wineexec
-        prefix: "$GAMEDIR"
-        working_dir: "$GAMEDIR/drive_c/GOG Games/Star Wars - X-Wing Alliance/"
+        prefix: $GAMEDIR
+        working_dir: $GAMEDIR/drive_c/Games/XWA
+    system:
+    env:
+        DXVK_STATE_CACHE: '0'
+    reset_desktop: true
     wine:
-      dxvk: false
-      overrides:
+    dxvk: true
+    overrides:
         ddraw.dll: n, b
         dinput.dll: n, b
-    system:
-      env:
-        DXVK_STATE_CACHE: '0'
-      reset_desktop: true
+
