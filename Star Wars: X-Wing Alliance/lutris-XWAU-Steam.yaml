@@ -1,0 +1,115 @@
+game_slug: star-wars-x-wing-alliance
+name: 'STAR WARS: X-Wing Alliance'
+slug: star-wars-x-wing-alliance-xwaupgrade-steam
+version: XWAUpgrade Steam
+steamid: 361670
+gogid: 1421404763
+gogslug: star_wars_xwing_alliance
+runner: wine
+script:
+    files:
+    - xwa: $STEAM:361670:.
+    - xwau2020: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
+    - xwau2020update_v5.0: https://www.xwaupgrade.com/download/installers/XWAU2020update_v5.0.exe
+    - xwau2020fixpack_v5.6.2: https://www.xwaupgrade.com/download/installers/XWAU2020fixpack_v5.6.2.exe
+    - ddraw_beta: https://www.xwaupgrade.com/download/betas/EffectsByBlueMax2_beta_v2023-09-03.zip
+    - xwa_hooks_setup: https://raw.github.com/JeremyAnsel/XwaHooksSetup/master/XwaHooksSetup/zip/XwaHooksSetup.zip
+    game:
+        arch: win64
+        exe: drive_c/Games/XWA/ALLIANCE.EXE
+        prefix: $GAMEDIR
+    installer:
+    - merge:
+        dst: $GAMEDIR/drive_c/Games/XWA
+        src: xwa
+    - task:
+        description: Set the XWA install path in the registry
+        key: Install Path
+        name: set_regedit
+        path: HKEY_LOCAL_MACHINE\Software\Wow6432Node\lucasarts entertainment company llc\X-Wing Alliance\v1.0
+        type: REG_SZ
+        value: c:\\Games\\XWA
+    - task:
+        app: dotnet48
+        arch: win64
+        description: Installing .NET 4.8
+        name: winetricks
+        prefix: $GAMEDIR
+    - task:
+        arch: win64
+        description: Installing XWA Upgrade 2020
+        executable: xwau2020
+        name: wineexec
+        prefix: $GAMEDIR
+    - task:
+        arch: win64
+        description: Installing XWA Upgrade 2020 Patch 5
+        executable: xwau2020update_v5.0
+        name: wineexec
+        prefix: $GAMEDIR
+    - task:
+        arch: win64
+        description: Installing XWA Upgrade 2020 Fixpack 5.6.2
+        executable: xwau2020fixpack_v5.6.2
+        name: wineexec
+        prefix: $GAMEDIR
+    - extract:
+        description: Installing latest ddraw beta
+        dst: $GAMEDIR/drive_c/Games/XWA/
+        file: ddraw_beta
+    - extract:
+        description: Extracting XwaHooksSetup tool
+        dst: $GAMEDIR/drive_c/Games/XWA/XwaHooksSetup
+        file: xwa_hooks_setup
+    - task:
+        arch: win64
+        description: Download latest hooks with XwaHooksSetup
+        executable: drive_c/Games/XWA/XwaHooksSetup.exe
+        name: wineexec
+        prefix: $GAMEDIR
+    - merge:
+        dst: $GAMEDIR/drive_c/Games/XWA
+        src: $GAMEDIR/drive_c/Games/XWA/XwaHooksSetup/Setup
+    - task:
+        description: Set BabuFriksConfigurator to not use DXVK
+        key: d3d9
+        name: set_regedit
+        path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\BabuFriksConfigurator.exe\DllOverrides
+        type: REG_SZ
+        value: builtin
+    - task:
+        description: Set PalpatineTotalConverter to not use DXVK
+        key: d3d9
+        name: set_regedit
+        path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\PalpatineTotalConverter.exe\DllOverrides
+        type: REG_SZ
+        value: builtin
+    - task:
+        description: Set Launcher to not use DXVK
+        key: d3d9
+        name: set_regedit
+        path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\Alliance.exe\DllOverrides
+        type: REG_SZ
+        value: builtin
+    - task:
+        description: Set Joystick Configuration Tool to not use DXVK
+        key: d3d9
+        name: set_regedit
+        path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\XwaJoystickConfig.exe\DllOverrides
+        type: REG_SZ
+        value: builtin
+    - task:
+        app: win10
+        arch: win64
+        description: Setting Windows 10 mode
+        name: winetricks
+        prefix: $GAMEDIR
+    system:
+        env:
+            DXVK_STATE_CACHE: '0'
+        reset_desktop: true
+    wine:
+        dxvk: true
+        overrides:
+            ddraw.dll: n, b
+            dinput.dll: n, b
