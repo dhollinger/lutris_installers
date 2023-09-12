@@ -9,11 +9,11 @@ runner: wine
 script:
     extends: star-wars-x-wing-alliance-gog
     files:
-    - xwau2020: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
-    - xwau2020update_v5.0: https://www.xwaupgrade.com/download/installers/XWAU2020update_v5.0.exe
-    - xwau2020fixpack_v5.6.2: https://www.xwaupgrade.com/download/installers/XWAU2020fixpack_v5.6.2.exe
-    - ddraw_beta: https://www.xwaupgrade.com/download/betas/EffectsByBlueMax2_beta_v2023-09-03.zip
-    - xwa_hooks_setup: https://raw.github.com/JeremyAnsel/XwaHooksSetup/master/XwaHooksSetup/zip/XwaHooksSetup.zip
+        - xwau2020: https://www.xwaupgrade.com/download/installers/XWAU2020.exe
+        - xwau2020update_v5.0: https://www.xwaupgrade.com/download/installers/XWAU2020update_v5.0.exe
+        - xwau2020fixpack_v5.6.2: https://www.xwaupgrade.com/download/installers/XWAU2020fixpack_v5.6.2.exe
+        - ddraw_beta: https://www.xwaupgrade.com/download/betas/EffectsByBlueMax2_beta_v2023-09-03.zip
+        - xwa_hooks_setup: https://raw.github.com/JeremyAnsel/XwaHooksSetup/master/XwaHooksSetup/zip/XwaHooksSetup.zip
     game:
         arch: win64
         exe: drive_c/Games/XWA/alliance.exe

@@ -13,15 +13,16 @@ results:
   gogslug: star_wars_xwing_alliance
   script:
     files:
-    - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
+    # - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
+    - xwahacker: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/xwahacker-3.2.zip
     - install: N/A:Select the installer provided by GOG.
     game:
-    arch: win64
-    description: XWAUpgrade Mod and Framework
-    exe: drive_c/Games/XWA/Alliance.EXE
-    game_slug: star-wars-x-wing-alliance
-    gogslug: star_wars_xwing_alliance
-    prefix: $GAMEDIR
+        arch: win64
+        description: XWAUpgrade Mod and Framework
+        exe: drive_c/Games/XWA/Alliance.EXE
+        game_slug: star-wars-x-wing-alliance
+        gogslug: star_wars_xwing_alliance
+        prefix: $GAMEDIR
     installer:
     - task:
         arch: win64
@@ -30,9 +31,7 @@ results:
     - task:
         arch: win64
         args: /dir="C:\Games\XWA"
-        description: Running installer. Please quit the installer at the end, do not run
-        the game until this script finishes installing. Do not change the installation
-        path if you want to install XWAU/TFTC later
+        description: Running installer. Please quit the installer at the end, do not run the game until this script finishes installing. Do not change the installation path if you want to install XWAU/TFTC later
         executable: install
         name: wineexec
         prefix: $GAMEDIR
@@ -71,12 +70,11 @@ results:
         prefix: $GAMEDIR
         working_dir: $GAMEDIR/drive_c/Games/XWA
     system:
-    env:
-        DXVK_STATE_CACHE: '0'
-    reset_desktop: true
+        env:
+            DXVK_STATE_CACHE: '0'
+        reset_desktop: true
     wine:
-    dxvk: true
-    overrides:
-        ddraw.dll: n, b
-        dinput.dll: n, b
-
+        dxvk: true
+        overrides:
+            ddraw.dll: n, b
+            dinput.dll: n, b
