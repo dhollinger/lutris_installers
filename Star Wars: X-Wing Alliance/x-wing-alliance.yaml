@@ -13,8 +13,6 @@ results:
   gogslug: star_wars_xwing_alliance
   script:
     files:
-    # - xwahacker: https://managedway.dl.sourceforge.net/project/xwahacker/xwahacker-3.2.zip
-    - xwahacker: https://github.com/dhollinger/lutris_installers/releases/download/v1.0.0/xwahacker-3.2.zip
     - install: N/A:Select the installer provided by GOG.
     game:
         arch: win64
@@ -35,40 +33,6 @@ results:
         executable: install
         name: wineexec
         prefix: $GAMEDIR
-    - extract:
-        dst: $CACHE
-        file: xwahacker
-        format: zip
-    - task:
-        args: XWINGALLIANCE.EXE -p 71
-        executable: $CACHE/xwahacker.exe
-        name: wineexec
-        prefix: $GAMEDIR
-        working_dir: $GAMEDIR/drive_c/Games/XWA
-    - task:
-        args: XWINGALLIANCE.EXE -p 103
-        executable: $CACHE/xwahacker.exe
-        name: wineexec
-        prefix: $GAMEDIR
-        working_dir: $GAMEDIR/drive_c/Games/XWA
-    - task:
-        args: XWINGALLIANCE.EXE -c 0
-        executable: $CACHE/xwahacker.exe
-        name: wineexec
-        prefix: $GAMEDIR
-        working_dir: $GAMEDIR/drive_c/Games/XWA
-    - task:
-        args: XWINGALLIANCE.EXE -c 7
-        executable: $CACHE/xwahacker.exe
-        name: wineexec
-        prefix: $GAMEDIR
-        working_dir: $GAMEDIR/drive_c/Games/XWA
-    - task:
-        args: XWINGALLIANCE.EXE -r 1 1920 1080
-        executable: $CACHE/xwahacker.exe
-        name: wineexec
-        prefix: $GAMEDIR
-        working_dir: $GAMEDIR/drive_c/Games/XWA
     system:
         env:
             DXVK_STATE_CACHE: '0'
