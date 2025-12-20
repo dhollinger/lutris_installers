@@ -1,0 +1,96 @@
+game_slug: star-wars-x-wing-alliance
+name: "STAR WARS: X-Wing Alliance"
+slug: star-wars-x-wing-alliance-xwaupgrade-steam
+version: XWAUpgrade 2025 GOG
+steamid: 361670
+gogid: 1421404763
+gogslug: star_wars_xwing_alliance
+runner: wine
+script:
+  extends: star-wars-x-wing-alliance-gog
+  files:
+    - xwau2025: https://github.com/JeremyAnsel/XwaInstallerManager/raw/main/zip/XwaInstallerManager.zip
+  game:
+    arch: win64
+    exe: drive_c/Games/XWAUpgrade/XWAU2025/Alliance.EXE
+    game_slug: star-wars-x-wing-alliance
+    prefix: $GAMEDIR
+  installer:
+    - task:
+        app: dotnet48
+        arch: win64
+        description: Installing .NET 4.8
+        name: winetricks
+        prefix: $GAMEDIR
+    - task:
+        app: vcrun2022
+        arch: win64
+        description: Installing Visual C++ 2022
+        name: winetricks
+        prefix: $GAMEDIR
+    - task:
+        app: arial
+        arch: win64
+        description: Installing Arial Font
+        name: winetricks
+        prefix: $GAMEDIR
+    - task:
+        app: consolas
+        arch: win64
+        description: Installing Consolas Font
+        name: winetricks
+        prefix: $GAMEDIR
+    - task:
+        app: verdana
+        arch: win64
+        description: Installing Verdana Font
+        name: winetricks
+        prefix: $GAMEDIR
+    - execute:
+        command: "mkdir $GAMEDIR/drive_c/Games/XWAUpgrade"
+    - extract:
+        description: Extracting XWAU2025 Installer Manager...
+        dst: $GAMEDIR/drive_c/XwaInstallerManager
+        file: xwau2025
+    - task:
+        arch: win64
+        description: Installing XwaInstallerManager
+        executable: $GAMEDIR/drive_c/XwaInstallerManager/XwaInstallerManager.exe
+        name: wineexec
+        prefix: $GAMEDIR
+    - execute:
+        description: Backup XWAU movies
+        command: "mkdir $GAMEDIR/drive_c/Games/XWAUpgrade/XWAU2025/Backup/Movies"
+    - execute:
+        command: "mv $GAMEDIR/drive_c/Games/XWAUpgrade/XWAU2025/Movies/*.mp4 $GAMEDIR/drive_c/Games/XWAUpgrade/XWAU2025/Backup/Movies"
+    - execute:
+        description: Restore original movies
+        command: "cp $GAMEDIR/drive_c/Games/XWA/MOVIES/* $GAMEDIR/drive_c/Games/XWAUpgrade/XWAU2025/Movies"
+    - execute:
+        description: Backup configuration files for hooks and ddraw
+        command: "cp $GAMEDIR/drive_c/Games/XWAUpgrade/XWAU2025/Hooks.ini $GAMEDIR/drive_c/Games/XWAUpgrade/XWAU2025/Hooks.ini.bak"
+    - execute:
+        command: "cp $GAMEDIR/drive_c/Games/XWAUpgrade/XWAU2025/ddraw.cfg $GAMEDIR/drive_c/Games/XWAUpgrade/XWAU2025/ddraw.cfg.bak"
+    - write_config:
+        description: Disable HD Concourse
+        file: $GAMEDIR/drive_c/Games/XWAUpgrade/XWAU2025/Hooks.ini
+        section: hook_concourse
+        key: HDConcourseEnabled
+        value: 0
+    - execute:
+        command: "sed -i -e 's/HDConcourseEnabled = 1/HDConcourseEnabled = 0/' $GAMEDIR/drive_c/Games/XWAUpgrade/XWAU2025/ddraw.cfg"
+    - task:
+        app: win10
+        arch: win64
+        description: Setting Windows 10 mode
+        name: winetricks
+        prefix: $GAMEDIR
+  system:
+    env:
+      DXVK_STATE_CACHE: "0"
+    reset_desktop: true
+  wine:
+    dxvk: true
+    overrides:
+      ddraw.dll: n,b
+      dinput.dll: n,b
